@@ -1,143 +1,46 @@
-# ER Diagram Workshop – Submission Template
+# DBMS Laboratory Manual Submission
 
-## Objective
-To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
+## 🎓 Course: 19CS404 Database Management System and its Applications  
+## 🧑‍🏫 Instructor: Ms. G Abinaya 
 
-## Purpose
-Gain hands-on experience in designing ER diagrams that represent database structure including entities, relationships, attributes, and constraints.
+![image](https://github.com/user-attachments/assets/7e6f9751-b530-4526-9a3d-8e322e3b2e6d)
 
----
+### 📝 Instructions for Students
 
-# Scenario A: City Fitness Club Management
+1. Fork this repository to your GitHub profile.
+2. For each experiment:
+   SQL queries based on questions generated randomly from Moodle.
+   - Complete the question on Moodle.
+   - Each experiment folder contains **two Markdown files**
+     1. `README.md`
 
-**Business Context:**  
-FlexiFit Gym wants a database to manage its members, trainers, and fitness programs.
+        This file contains:
+         - 🎯 **Aim**
+         - 📚 **Theory**
+         - 📝 **Result**
+        
+        You **do not need to edit** this file unless instructed.
+      3. `output.md`
 
-**Requirements:**  
-- Members register with name, membership type, and start date.  
-- Each member can join multiple programs (Yoga, Zumba, Weight Training).  
-- Trainers assigned to programs; a program may have multiple trainers.  
-- Members may book personal training sessions with trainers.  
-- Attendance recorded for each session.  
-- Payments tracked for memberships and sessions.
+         You **must update this file** with your answers and outputs.
+         For each of the 10 Moodle-generated questions:
+         - Paste the **question**
+         - Write the **SQL query** inside the code block
+         - Paste a **screenshot or terminal output** below it
+3. Commit and push your changes.
+4. Create a pull request to the original repository
 
-### ER Diagram:
-<img width="1403" height="924" alt="image" src="https://github.com/user-attachments/assets/69a39fbd-0b48-40ee-b356-a21e710e6aab" />
+### ✅ Experiments List
 
-
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
-### Assumptions
-- 
-- 
-- 
-
----
-
-# Scenario B: City Library Event & Book Lending System
-
-**Business Context:**  
-The Central Library wants to manage book lending and cultural events.
-
-**Requirements:**  
-- Members borrow books, with loan and return dates tracked.  
-- Each book has title, author, and category.  
-- Library organizes events; members can register.  
-- Each event has one or more speakers/authors.  
-- Rooms are booked for events and study.  
-- Overdue fines apply for late returns.
-
-### ER Diagram:
-<img width="1133" height="873" alt="image" src="https://github.com/user-attachments/assets/534a5be5-75ae-4ea7-9608-4e346ab76f45" />
-
-
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
-### Assumptions
-- 
-- 
-- 
-
----
-
-# Scenario C: Restaurant Table Reservation & Ordering
-
-**Business Context:**  
-A popular restaurant wants to manage reservations, orders, and billing.
-
-**Requirements:**  
-- Customers can reserve tables or walk in.  
-- Each reservation includes date, time, and number of guests.  
-- Customers place food orders linked to reservations.  
-- Each order contains multiple dishes; dishes belong to categories (starter, main, dessert).  
-- Bills generated per reservation, including food and service charges.  
-- Waiters assigned to serve reservations.
-
-### ER Diagram:
-<img width="890" height="865" alt="image" src="https://github.com/user-attachments/assets/27c0beca-158a-4426-83b4-e3510d0dc663" />
-
-
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
-### Assumptions
-- 
-- 
-- 
-
----
-
-## Instructions for Students
-
-1. Complete **all three scenarios** (A, B, C).  
-2. Identify entities, relationships, and attributes for each.  
-3. Draw ER diagrams using **draw.io / diagrams.net** or hand-drawn & scanned.  
-4. Fill in all tables and assumptions for each scenario.  
-5. Export the completed Markdown (with diagrams) as **a single PDF**
+| Exp No | Title                          | Module Based? |
+|--------|--------------------------------|---------------|
+| 1      | ER Diagram                     | No            |
+| 2      | DDL Commands                   | Yes           |
+| 3      | DML Commands                   | Yes           |
+| 4      | Aggregate, GROUP BY, HAVING   | Yes           |
+| 5      | Subqueries and Views          | Yes           |
+| 6      | Joins                         | Yes           |
+| 7      | Pl/sql                        | No            |
+| 8      | Procedures, Functions         | No            |
+| 9      | Cursors, Exception Handling   | No            |
+| 10     | Triggers                      | No            |
