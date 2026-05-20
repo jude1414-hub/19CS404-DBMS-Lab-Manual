@@ -1,99 +1,143 @@
-## NAME : Jude Clement Jose G
-## REG : 212224230109
-## AIM
-To design and analyze a Gym Management System, City Library Event & Book Lending System, Restrarunt Table Reservation and Ordering using an Entity Relationship (ER) diagram by identifying entities, attributes, relationships, and constraints, and to understand how the ER model helps in organizing and managing database information efficiently.
-## THEORY
-### Step 1: Identify the Entities
+# ER Diagram Workshop – Submission Template
 
-      The main entities in the Gym Management System are:
-      
-      Member
-      Trainer
-      Program
-      Booking
-      
-      These entities represent the major objects involved in the system.
+## Objective
+To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
 
-## Step 2: Define the Attributes
+## Purpose
+Gain hands-on experience in designing ER diagrams that represent database structure including entities, relationships, attributes, and constraints.
 
-      Each entity contains attributes that describe its details.
-      
-      Member
-      member_id
-      name
-      email
-      phone
-      Trainer
-      trainer_id
-      name
-      speciality
-      Program
-      program_id
-      program_name
-      duration
-      Booking
-      payment_id
-      member_id
-      payment_date
-      amount
-## Step 3: Identify Primary Keys
+---
 
-      Primary keys uniquely identify each record.
-      
-      member_id → Primary Key of Member
-      trainer_id → Primary Key of Trainer
-      program_id → Primary Key of Program
-      payment_id → Primary Key of Booking
-## Step 4: Identify Relationships
-      Member — Booking
-      One member can register many bookings.
-      Relationship: Registers
-      Cardinality: 1 : N
-      Member — Trainer
-      Members can book trainers.
-      Trainers can train multiple members.
-      Relationship: Booking
-      Cardinality: M : N
-      Trainer — Program
-      Trainers can teach many programs.
-      Programs can be taught by many trainers.
-      Relationship: Teaches
-      Cardinality: M : N
-      Booking — Program
-      Payments are made for programs.
-      Relationship: Pays
-## Step 5: Define Constraints
+# Scenario A: City Fitness Club Management
 
-      The ER diagram follows these constraints:
-      
-      Primary Key constraint
-      Entity Integrity constraint
-      Referential Integrity constraint
-      
-      These constraints help maintain accurate and consistent data.
+**Business Context:**  
+FlexiFit Gym wants a database to manage its members, trainers, and fitness programs.
 
-## Step 6: Explain the Purpose of the ER Diagram
-      The ER diagram is used to:
-      
-      Organize gym data efficiently
-      Reduce data redundancy
-      Maintain relationships between entities
-      Manage bookings and payments
-      Improve database consistency
-      
-### ER-DIAGRAM FOR Gym Management System
+**Requirements:**  
+- Members register with name, membership type, and start date.  
+- Each member can join multiple programs (Yoga, Zumba, Weight Training).  
+- Trainers assigned to programs; a program may have multiple trainers.  
+- Members may book personal training sessions with trainers.  
+- Attendance recorded for each session.  
+- Payments tracked for memberships and sessions.
 
-<img width="1051" height="717" alt="image" src="https://github.com/user-attachments/assets/44ab363d-7cea-45e7-96cf-6707a835d973" />
-
-### ER-DIAGRAM FOR City Library Event & Book Lending System
-
-<img width="1133" height="873" alt="image" src="https://github.com/user-attachments/assets/bae58698-5c6d-4481-9784-5686f32dfec3" />
-
-### ER-DIAGRAM FOR Restrarunt Table Reservation and Ordering
+### ER Diagram:
+<img width="1403" height="924" alt="image" src="https://github.com/user-attachments/assets/69a39fbd-0b48-40ee-b356-a21e710e6aab" />
 
 
-<img width="890" height="865" alt="image" src="https://github.com/user-attachments/assets/5f4960a3-fda0-4221-bb8c-81eb1185ab7c" />
+### Entities and Attributes
 
-### RESULT
+| Entity | Attributes (PK, FK) | Notes |
+|--------|--------------------|-------|
+|        |                    |       |
+|        |                    |       |
+|        |                    |       |
+|        |                    |       |
+|        |                    |       |
 
-Thus, the ER diagram for the Gym Management System, City Library Event & Book Lending System, Restrarunt Table Reservation and Ordering was successfully designed by identifying the entities, attributes, relationships, and constraints. The ER model clearly represents the interaction between members, trainers, programs, bookings, and payments, and helps in creating an efficient and well-structured database system.
+### Relationships and Constraints
+
+| Relationship | Cardinality | Participation | Notes |
+|--------------|------------|---------------|-------|
+|              |            |               |       |
+|              |            |               |       |
+|              |            |               |       |
+
+### Assumptions
+- 
+- 
+- 
+
+---
+
+# Scenario B: City Library Event & Book Lending System
+
+**Business Context:**  
+The Central Library wants to manage book lending and cultural events.
+
+**Requirements:**  
+- Members borrow books, with loan and return dates tracked.  
+- Each book has title, author, and category.  
+- Library organizes events; members can register.  
+- Each event has one or more speakers/authors.  
+- Rooms are booked for events and study.  
+- Overdue fines apply for late returns.
+
+### ER Diagram:
+<img width="1133" height="873" alt="image" src="https://github.com/user-attachments/assets/534a5be5-75ae-4ea7-9608-4e346ab76f45" />
+
+
+### Entities and Attributes
+
+| Entity | Attributes (PK, FK) | Notes |
+|--------|--------------------|-------|
+|        |                    |       |
+|        |                    |       |
+|        |                    |       |
+|        |                    |       |
+|        |                    |       |
+
+### Relationships and Constraints
+
+| Relationship | Cardinality | Participation | Notes |
+|--------------|------------|---------------|-------|
+|              |            |               |       |
+|              |            |               |       |
+|              |            |               |       |
+
+### Assumptions
+- 
+- 
+- 
+
+---
+
+# Scenario C: Restaurant Table Reservation & Ordering
+
+**Business Context:**  
+A popular restaurant wants to manage reservations, orders, and billing.
+
+**Requirements:**  
+- Customers can reserve tables or walk in.  
+- Each reservation includes date, time, and number of guests.  
+- Customers place food orders linked to reservations.  
+- Each order contains multiple dishes; dishes belong to categories (starter, main, dessert).  
+- Bills generated per reservation, including food and service charges.  
+- Waiters assigned to serve reservations.
+
+### ER Diagram:
+<img width="890" height="865" alt="image" src="https://github.com/user-attachments/assets/27c0beca-158a-4426-83b4-e3510d0dc663" />
+
+
+### Entities and Attributes
+
+| Entity | Attributes (PK, FK) | Notes |
+|--------|--------------------|-------|
+|        |                    |       |
+|        |                    |       |
+|        |                    |       |
+|        |                    |       |
+|        |                    |       |
+
+### Relationships and Constraints
+
+| Relationship | Cardinality | Participation | Notes |
+|--------------|------------|---------------|-------|
+|              |            |               |       |
+|              |            |               |       |
+|              |            |               |       |
+
+### Assumptions
+- 
+- 
+- 
+
+---
+
+## Instructions for Students
+
+1. Complete **all three scenarios** (A, B, C).  
+2. Identify entities, relationships, and attributes for each.  
+3. Draw ER diagrams using **draw.io / diagrams.net** or hand-drawn & scanned.  
+4. Fill in all tables and assumptions for each scenario.  
+5. Export the completed Markdown (with diagrams) as **a single PDF**
