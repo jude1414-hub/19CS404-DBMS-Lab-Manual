@@ -1,164 +1,214 @@
-# Experiment 3: DML Commands
+# Experiment 4: Aggregate Functions, Group By and Having Clause
 ## AIM
-To study and implement DML (Data Manipulation Language) commands.
+To study and implement aggregate functions, GROUP BY, and HAVING clause with suitable examples.
 
 ## THEORY
 
-### 1. INSERT INTO
-Used to add records into a relation.
-These are three type of INSERT INTO queries which are as
-A)Inserting a single record
-*Syntax (Single Row):*
-```
-INSERT INTO table_name (field_1, field_2, ...) VALUES (value_1, value_2, ...);
-```
-*Syntax (Multiple Rows):*
-```
-INSERT INTO table_name (field_1, field_2, ...) VALUES
-(value_1, value_2, ...),
-(value_3, value_4, ...);
-```
-*Syntax (Insert from another table):*
-```
-INSERT INTO table_name SELECT * FROM other_table WHERE condition;
-```
-### 2. UPDATE
-Used to modify records in a relation.
-Syntax:
-```
-UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;
-```
-### 3. DELETE
-Used to delete records from a relation.
-*Syntax (All rows):*
-```
-DELETE FROM table_name;
-```
-*Syntax (Specific condition):*
-```
-DELETE FROM table_name WHERE condition;
-```
-### 4. SELECT
-Used to retrieve records from a table.
+### Aggregate Functions
+These perform calculations on a set of values and return a single value.
+
+- *MIN()* – Smallest value  
+- *MAX()* – Largest value  
+- *COUNT()* – Number of rows  
+- *SUM()* – Total of values  
+- *AVG()* – Average of values
+
 *Syntax:*
 ```
-SELECT column1, column2 FROM table_name WHERE condition;
+SELECT AGG_FUNC(column_name) FROM table_name WHERE condition;
 ```
-### *Question 1*
-
-Write a SQL statement to update the product_name as 'Grapefruit' whose product_id is 4 in the products table.
+### GROUP BY
+Groups records with the same values in specified columns.
+*Syntax:*
 ```
-update products
-set product_name='Grapefruit'
-where product_id=4;
+SELECT column_name, AGG_FUNC(column_name)
+FROM table_name
+GROUP BY column_name;
 ```
-### *Output:*
-
-![image](https://github.com/user-attachments/assets/f7cb35b7-e15c-4d6d-be26-695316a2752f)
-
-### *Question 2*
-
-Write a SQL query to reduce the reorder level by 30% where cost price is more than 50 and quantity in stock is less than 100 in the products table.
+### HAVING
+Filters the grouped records based on aggregate conditions.
+*Syntax:*
 ```
-update Products
-set reorder_lvl=reorder_lvl*0.7
-where cost_price>50 and quantity<100;
+SELECT column_name, AGG_FUNC(column_name)
+FROM table_name
+GROUP BY column_name
+HAVING condition;
 ```
-### *Output:*
 
-![image](https://github.com/user-attachments/assets/be6557eb-cca2-408a-ba08-390d6e796285)
+*Question 1*
 
-### *Question 3*
+How many prescriptions were written by each doctor?
 
-Write a SQL query to Delete a Specific Surgery which was made on 28th Feb 2024.
+Sample tablePrescriptions Table
 ```
-delete from Surgeries 
-where surgery_date='2024-02-28';
+SELECT DoctorID, COUNT(*)AS
+TotalPrescriptions
+FROM Prescriptions
+GROUP BY DoctorID;
 ```
-### *Output:*
+*Output:*
 
-![image](https://github.com/user-attachments/assets/10904988-223a-42e7-94ca-3b48b01b9c31)
+![image](https://github.com/user-attachments/assets/c5ecb054-0dcb-4489-baa4-2b30c8238a73)
 
-### *Question 4*
+*Question 2*
 
-Write a SQL query to Delete customers from 'customer' table where 'GRADE' is not equal to 3.
+How many patients are covered by each insurance company?
+
+Sample table:Insurance Table
+
+name type
+
+InsuranceID INTEGER PatientID INTEGER InsuranceCompany TEXT PolicyNumber TEXT PolicyHolder TEXT ValidityPeriod TEXT
 ```
-delete from customer
-where GRADE!=3;
+SELECT InsuranceCompany,
+COUNT ( DISTINCT PatientID )AS
+TotalPatients
+FROM Insurance
+GROUP BY InsuranceCompany;
 ```
-### *Output:*
+*Output:*
 
-![image](https://github.com/user-attachments/assets/79285c8a-2978-407d-82ba-b3c2cdb69272)
+![image](https://github.com/user-attachments/assets/02784127-99c3-429f-ad06-d69b605a5c7b)
 
-### *Question 5*
+*Question 3*
 
-Write a query to fetch details of employees whose EmpLname ends with an alphabet ‘A’ and contains five alphabets.
+How many patients are there in each city?
 ```
-select * from EmployeeInfo 
-where EmpLname like '%A' and length(EmpLname)=5;
+SELECT Address, COUNT(*)AS
+TotalPatients
+FROM Patients
+GROUP BY Address;
 ```
-### *Output:*
+*Output:*
 
-![image](https://github.com/user-attachments/assets/821d1823-0fea-438e-9709-d82220eea49a)
+![image](https://github.com/user-attachments/assets/38f989b2-c1f9-4278-8f02-1497e0eebb7a)
 
-### *Question 6*
 
-Write a SQL query to classify base in the Calculations table as 'Provided' if it is not NULL, otherwise 'Not Provided'.
+*Question 4*
+
+Write a SQL query to find the minimum purchase amount.
+
+Sample table: orders
+
+ord_no purch_amt ord_date customer_id salesman_id
+
+70001 150.5 2012-10-05 3005 5002
+
+70009 270.65 2012-09-10 3001 5005
+
+70002 65.26 2012-10-05 3002 5001
+
 ```
-select id,base,
-case when base is not NULL then 'Provided'
-else 'Not Provided'
-end as base_status
-from Calculations;
+SELECT MIN(purch_amt)AS
+MINIMUM
+FROM orders;
 ```
-### *Output:*
+*Output:*
 
-![image](https://github.com/user-attachments/assets/01350e6d-b955-4d9f-8d27-c40f32b3423e)
+![image](https://github.com/user-attachments/assets/77336749-974a-44be-ba09-0ec0fd4e04ad)
 
-### *Question 7*
 
-Write a SQL query to calculate the final price after applying both the discount and the tax. Return product_id, original_price, discount_percentage, tax_rate, and final_price.
+*Question 5*
+
+Write a SQL query to return the total number of rows in the 'customer' table where the city is not Noida.
 ```
-select product_id,original_price,discount_percentage,tax_rate,(original_price*(1-discount_percentage))*(1+tax_rate) as final_price
-from products;
+SELECT COUNT(*)AS 
+COUNT
+FROM customer
+WHERE city!='Noida';
 ```
-### *Output:*
+*Output:*
 
-![image](https://github.com/user-attachments/assets/1fb06574-24fd-4972-b6e2-79a5a2065676)
+![image](https://github.com/user-attachments/assets/d1974d6a-e83a-47df-aa64-0256aea51d3e)
 
-### *Question 8*
 
-Create a report that shows the capitalized FirstName and capitalized LastName renamed as FirstName and Lastname respectively and EmployeeId from the employees table sorted by EmployeeId in descending order.
+*Question 6*
+
+Write a SQL query to find the maximum purchase amount.
+
+Sample table: orders
+
+ord_no purch_amt ord_date customer_id salesman_id
+
+70001 150.5 2012-10-05 3005 5002
+
+70009 270.65 2012-09-10 3001 5005
+
+70002 65.26 2012-10-05 3002 5001
+
 ```
-select upper(FirstName) AS FirstName,upper(LastName) AS LastName,EmployeeId
-from employees
-order by EmployeeID desc;
+SELECT MAX (purch_amt)AS MAXIMUM
+FROM orders;
 ```
-### *Output:*
+*Output:*
 
-![image](https://github.com/user-attachments/assets/fdff8b34-9326-409f-9a0f-184c53772e6c)
+![image](https://github.com/user-attachments/assets/f6e9c531-1bcb-4bb9-bbaa-a6c0b8485a12)
 
-### *Question 9*
 
-Write a SQL statement to retrieve city(column name) of all customers from customers table without any repeats.
+*Question 7*
+
+Write a SQL query to Calculate the average email length (in characters) for people who lives in Mumbai city
+
+Table: customer
+
+name type
+
+id INTEGER name TEXT
+city TEXT email TEXT phone INTEGER
+
 ```
-select distinct city from customers;
+SELECT AVG(LENGTH(email))AS
+avg_email_length_below_30
+FROM customer
+WHERE city='Mumbai';
 ```
-### *Output:*
+*Output:*
 
-![image](https://github.com/user-attachments/assets/38dc88ff-bf42-4f73-a8ca-5a1b75ae5a23)
+![image](https://github.com/user-attachments/assets/ca601445-a16b-442f-aae8-0900b5334b75)
 
-### *Question 10*
 
-Write a SQL statement to Double the salary for employees in department 20 who have a job_id ending with 'MAN'
+*Question 8*
+
+Write the SQL query that achieves the grouping of data by age intervals using the expression (age/5)5, calculates the average age for each group, and excludes groups where the average age is not less than 24.
 ```
-update EMPLOYEES
-SET SALARY= SALARY *2
-WHERE JOB_ID like'%MAN';
+SELECT
+  (age/5)*5 AS age_group ,
+   AVG(age)
+FROM customer1
+GROUP BY age_group 
+HAVING AVG(age)<24;
 ```
-### *Output:*
+*Output:*
 
-![image](https://github.com/user-attachments/assets/30c35d8d-ef7b-4012-8554-9d1fe551bc5b)
+![image](https://github.com/user-attachments/assets/3b0e0130-41c2-42cb-b857-2688573e0f7e)
+
+
+*Question 9*
+
+Write the SQL query that achieves the selection of category and calculates the sum of the product of price and category ID as Revenue for each category from the "products" table, and includes only those products where the total revenue is greater than 25.
+```
+SELECT CATEGORY_ID, SUM(price*category_id) AS Revenue
+FROM products
+GROUP BY category_id
+HAVING SUM(price *category_id)>25;
+```
+*Output:*
+
+![image](https://github.com/user-attachments/assets/dcd2a606-3aaf-466c-ba73-ae9acfbc394b)
+
+
+*Question 10*
+
+How many medical records are there for each patient?
+```
+select PatientID, count(RecordID) as 'TotalRecords'
+from MedicalRecords
+group by PatientID;
+```
+*Output:*
+
+![image](https://github.com/user-attachments/assets/b45b235a-cc86-420d-84ac-4c4a3aefb6d5)
 
 ## RESULT
-Thus, the SQL queries to implement DML commands have been executed successfully.
+Thus, the SQL queries to implement aggregate functions, GROUP BY, and HAVING clause have been executed successfully.
+
