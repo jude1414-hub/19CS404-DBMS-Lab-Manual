@@ -46,8 +46,8 @@ Design a database for patient management, appointments, medical records, and bil
    - How you modeled prerequisites or billing.
 
 # ER Diagram Submission - Student Name
-# Name: Reddineni Adarsh Chowdary
-# Reg.no:212223040166
+# Name: Jude Clement Jose G
+# Reg.no:212224230109
 # Scenario Chosen:
 University 
 ## ER Diagram:
