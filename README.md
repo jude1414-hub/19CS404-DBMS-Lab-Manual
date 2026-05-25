@@ -1,270 +1,164 @@
-# Experiment 2: DDL Commands
+# Experiment 3: DML Commands
 ## AIM
-To study and implement DDL commands and different types of constraints.
+To study and implement DML (Data Manipulation Language) commands.
 
 ## THEORY
 
-### 1. CREATE
-Used to create a new relation (table).
-
+### 1. INSERT INTO
+Used to add records into a relation.
+These are three type of INSERT INTO queries which are as
+A)Inserting a single record
+*Syntax (Single Row):*
+```
+INSERT INTO table_name (field_1, field_2, ...) VALUES (value_1, value_2, ...);
+```
+*Syntax (Multiple Rows):*
+```
+INSERT INTO table_name (field_1, field_2, ...) VALUES
+(value_1, value_2, ...),
+(value_3, value_4, ...);
+```
+*Syntax (Insert from another table):*
+```
+INSERT INTO table_name SELECT * FROM other_table WHERE condition;
+```
+### 2. UPDATE
+Used to modify records in a relation.
+Syntax:
+```
+UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;
+```
+### 3. DELETE
+Used to delete records from a relation.
+*Syntax (All rows):*
+```
+DELETE FROM table_name;
+```
+*Syntax (Specific condition):*
+```
+DELETE FROM table_name WHERE condition;
+```
+### 4. SELECT
+Used to retrieve records from a table.
 *Syntax:*
-sql
 ```
-CREATE TABLE (
-  field_1 data_type(size),
-  field_2 data_type(size),
-  ...
-);
+SELECT column1, column2 FROM table_name WHERE condition;
 ```
-### 2. ALTER
-Used to add, modify, drop, or rename fields in an existing relation.
-(a) ADD
-sql
-```
-ALTER TABLE std ADD (Address CHAR(10));
-```
-(b) MODIFY
-sql
-```
-ALTER TABLE relation_name MODIFY (field_1 new_data_type(size));
-```
-(c) DROP
-sql
-```
-ALTER TABLE relation_name DROP COLUMN field_name;
-```
-(d) RENAME
-sql
-```
-ALTER TABLE relation_name RENAME COLUMN old_field_name TO new_field_name;
-```
-### 3. DROP TABLE
-Used to permanently delete the structure and data of a table.
-sql
-```
-DROP TABLE relation_name;
-```
-### 4. RENAME
-Used to rename an existing database object.
-sql
-```
-RENAME TABLE old_relation_name TO new_relation_name;
-```
-### CONSTRAINTS
-Constraints are used to specify rules for the data in a table. If there is any violation between the constraint and the data action, the action is aborted by the constraint. It can be specified when the table is created (using CREATE TABLE) or after it is created (using ALTER TABLE).
-### 1. NOT NULL
-When a column is defined as NOT NULL, it becomes mandatory to enter a value in that column.
-Syntax:
-sql
-```
-CREATE TABLE Table_Name (
-  column_name data_type(size) NOT NULL
-);
-```
-### 2. UNIQUE
-Ensures that values in a column are unique.
-Syntax:
-sql
-```
-CREATE TABLE Table_Name (
-  column_name data_type(size) UNIQUE
-);
-```
-### 3. CHECK
-Specifies a condition that each row must satisfy.
-Syntax:
-sql
-```
-CREATE TABLE Table_Name (
-  column_name data_type(size) CHECK (logical_expression)
-);
-```
-### 4. PRIMARY KEY
-Used to uniquely identify each record in a table.
-Properties:
-Must contain unique values.
-Cannot be null.
-Should contain minimal fields.
-Syntax:
-sql
-```
-CREATE TABLE Table_Name (
-  column_name data_type(size) PRIMARY KEY
-);
-```
-### 5. FOREIGN KEY
-Used to reference the primary key of another table.
-Syntax:
-sql
-```
-CREATE TABLE Table_Name (
-  column_name data_type(size),
-  FOREIGN KEY (column_name) REFERENCES other_table(column)
-);
-```
-### 6. DEFAULT
-Used to insert a default value into a column if no value is specified.
+### *Question 1*
 
-Syntax:
-sql
+Write a SQL statement to update the product_name as 'Grapefruit' whose product_id is 4 in the products table.
 ```
-CREATE TABLE Table_Name (
-  col_name1 data_type,
-  col_name2 data_type,
-  col_name3 data_type DEFAULT 'default_value'
-);
+update products
+set product_name='Grapefruit'
+where product_id=4;
 ```
+### *Output:*
 
-*Question 1*
+![image](https://github.com/user-attachments/assets/f7cb35b7-e15c-4d6d-be26-695316a2752f)
 
-Write a SQL query to modify the Student_details table by adding a new column Email of type VARCHAR(50) and updating the column MARKS to have a default value of 0.
+### *Question 2*
+
+Write a SQL query to reduce the reorder level by 30% where cost price is more than 50 and quantity in stock is less than 100 in the products table.
 ```
-ALTER TABLE  Student_details ADD COLUMN Email VARCHAR(50);
-ALTER TABLE  Student_details ADD COLUMN MARKS DEFAULT '0';
+update Products
+set reorder_lvl=reorder_lvl*0.7
+where cost_price>50 and quantity<100;
 ```
-*Output:*
+### *Output:*
 
-![image](https://github.com/user-attachments/assets/a2ad517d-78c6-4489-9474-ae83f64e32ce)
+![image](https://github.com/user-attachments/assets/be6557eb-cca2-408a-ba08-390d6e796285)
 
+### *Question 3*
 
-*Question 2*
-
-Create a new table named contacts with the following specifications: contact_id as INTEGER and primary key. first_name as TEXT and not NULL. last_name as TEXT and not NULL. email as TEXT. phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
+Write a SQL query to Delete a Specific Surgery which was made on 28th Feb 2024.
 ```
-CREATE TABLE contacts (
-contact_id INT PRIMARY KEY,
-first_name TEXT  NOT NULL,
-last_name TEXT NOT NULL,
-email TEXT,
-phone TEXT  NOT NULL,
-CHECK (LENGTH(phone)>=10)
-);
+delete from Surgeries 
+where surgery_date='2024-02-28';
 ```
-*Output:*
+### *Output:*
 
-![image](https://github.com/user-attachments/assets/4232e1e8-adc2-4bcc-aecc-6cb871978988)
+![image](https://github.com/user-attachments/assets/10904988-223a-42e7-94ca-3b48b01b9c31)
 
+### *Question 4*
 
-*Question 3*
-
-Insert all books from Out_of_print_books into Books
-
-Table attributes are ISBN, Title, Author, Publisher, YearPublished
+Write a SQL query to Delete customers from 'customer' table where 'GRADE' is not equal to 3.
 ```
-INSERT INTO Books(ISBN, Title, Author, Publisher, YearPublished)
-SELECT ISBN, Title, Author, Publisher, YearPublished 
-FROM Out_of_print_books;
+delete from customer
+where GRADE!=3;
 ```
-*Output:*
+### *Output:*
 
-![image](https://github.com/user-attachments/assets/cbec7eb2-d1e6-4204-9486-203ef3c32e2c)
+![image](https://github.com/user-attachments/assets/79285c8a-2978-407d-82ba-b3c2cdb69272)
 
+### *Question 5*
 
-*Question 4*
-
-Create a table named Departments with the following columns:
-
-DepartmentID as INTEGER DepartmentName as TEXT
+Write a query to fetch details of employees whose EmpLname ends with an alphabet ‘A’ and contains five alphabets.
 ```
-CREATE TABLE Departments(
-DepartmentID INTEGER,
-DepartmentName TEXT);
+select * from EmployeeInfo 
+where EmpLname like '%A' and length(EmpLname)=5;
 ```
+### *Output:*
 
-*Output:*
-![image](https://github.com/user-attachments/assets/3c02ebb4-0350-4b0b-b74a-3611066239c4)
+![image](https://github.com/user-attachments/assets/821d1823-0fea-438e-9709-d82220eea49a)
 
-*Question 5*
+### *Question 6*
 
-Write an SQL query to add two new columns, department_id and manager_id, to the table employee with datatype of INTEGER. The manager_id column should have a default value of NULL.
+Write a SQL query to classify base in the Calculations table as 'Provided' if it is not NULL, otherwise 'Not Provided'.
 ```
-ALTER TABLE employee ADD COLUMN department_id INTEGER;
-ALTER TABLE employee ADD COLUMN manager_id INTEGER DEFAULT NULL;
+select id,base,
+case when base is not NULL then 'Provided'
+else 'Not Provided'
+end as base_status
+from Calculations;
 ```
-*Output:*
-![image](https://github.com/user-attachments/assets/aa64eeea-195a-4162-91ea-0dd7a32aa315)
+### *Output:*
 
-*Question 6*
+![image](https://github.com/user-attachments/assets/01350e6d-b955-4d9f-8d27-c40f32b3423e)
 
-Insert all customers from Old_customers into Customers
+### *Question 7*
 
-Table attributes are CustomerID, Name, Address, Email
+Write a SQL query to calculate the final price after applying both the discount and the tax. Return product_id, original_price, discount_percentage, tax_rate, and final_price.
 ```
-INSERT INTO Customers(CustomerID, Name, Address, Email)
-SELECT CustomerID, Name, Address, Email
-FROM Old_customers;6
+select product_id,original_price,discount_percentage,tax_rate,(original_price*(1-discount_percentage))*(1+tax_rate) as final_price
+from products;
 ```
-*Output:*
+### *Output:*
 
-![image](https://github.com/user-attachments/assets/5ad04860-aab6-4066-9138-47629ff8a49f)
+![image](https://github.com/user-attachments/assets/1fb06574-24fd-4972-b6e2-79a5a2065676)
 
-*Question 7*
+### *Question 8*
 
- ---Write a SQL query to Add a new column named "discount" with the data type DECIMAL(5,2) to the "customer" table.
-
-Sample table: customer
-
-customer_id | cust_name | city | grade | salesman_id -------------+----------------+------------+-------+------------- 3002 | Nick Rimando | New York | 100 | 5001 3007 | Brad Davis | New York | 200 | 5001 3005 | Graham Zusi | California | 200 | 5002
+Create a report that shows the capitalized FirstName and capitalized LastName renamed as FirstName and Lastname respectively and EmployeeId from the employees table sorted by EmployeeId in descending order.
 ```
-ALTER TABLE customer  ADD COLUMN discount DECIMAL(5,2);
+select upper(FirstName) AS FirstName,upper(LastName) AS LastName,EmployeeId
+from employees
+order by EmployeeID desc;
 ```
+### *Output:*
 
-*Output:*
+![image](https://github.com/user-attachments/assets/fdff8b34-9326-409f-9a0f-184c53772e6c)
 
-![image](https://github.com/user-attachments/assets/fc9f743c-666b-401b-84c5-983bd21a4926)
+### *Question 9*
 
-*Question 8*
-
-Create a table named Members with the following columns:
-
-MemberID as INTEGER MemberName as TEXT JoinDate as DATE
+Write a SQL statement to retrieve city(column name) of all customers from customers table without any repeats.
 ```
-create table Members(
-MemberID INTEGER,
-MemberName TEXT,
-JoinDate DATE
-);
+select distinct city from customers;
 ```
-## *Output:*
+### *Output:*
 
-![image](https://github.com/user-attachments/assets/0b0a2862-476c-4930-be64-9efc6e273acb)
+![image](https://github.com/user-attachments/assets/38dc88ff-bf42-4f73-a8ca-5a1b75ae5a23)
 
+### *Question 10*
 
-## *Question 9*
-
-Write a SQL query to add birth_date attribute as timestamp (datatype) in the table customer 
-
-Sample table: customer
-
- customer_id |   cust_name    |    city    | grade | salesman_id 
--------------+----------------+------------+-------+-------------
-        3002 | Nick Rimando   | New York   |   100 |        5001
-        3007 | Brad Davis     | New York   |   200 |        5001
-        3005 | Graham Zusi    | California |   200 |        5002
+Write a SQL statement to Double the salary for employees in department 20 who have a job_id ending with 'MAN'
 ```
-  alter table customer
-add column birth_date timestamp;
+update EMPLOYEES
+SET SALARY= SALARY *2
+WHERE JOB_ID like'%MAN';
 ```
-*Output:*
+### *Output:*
 
-![image](https://github.com/user-attachments/assets/9eb90475-b45d-40ff-aa44-3813174201ba)
-
-*Question 10*
-
-Insert the below data into the Student_details table, allowing the Subject and MARKS columns to take their default values.
-
-RollNo      Name          Gender      
-----------  ------------  ----------  
-204         Samuel Black  M          
-
-Note: The Subject and MARKS columns will use their default values.
-```
-insert into Student_details(RollNo,Name,Gender)
-values(204,"Samuel Black","M");
-```
-*Output:*
-
-![image](https://github.com/user-attachments/assets/9d1f9460-2ad8-4479-99d2-7a8a2d5f5797)
+![image](https://github.com/user-attachments/assets/30c35d8d-ef7b-4012-8554-9d1fe551bc5b)
 
 ## RESULT
-Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
+Thus, the SQL queries to implement DML commands have been executed successfully.
